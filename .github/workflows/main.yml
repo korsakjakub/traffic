@@ -9,10 +9,10 @@ jobs:
         uses: actions/checkout@master
       - name: Test
         uses: onichandame/python-test-action@master
-      - uses: actions/checkout@v2  
-      - name: Python Linter
-        uses: sunnysid3up/python-linter@master
+      - name: Lint
+        uses: gabriel-milan/action-pylint@v1
         with:
-          source: "."
-          mypy-options: "--ignore-missing-imports --show-error-codes"
-          isort-options: "-w 100"
+          GITHUB_TOKEN: ${{secrets.WORKFLOW_TOKEN}} # GitHub token
+          path: "./*.py" # Glob pattern for files to lint
+          fail: false # Fail the action if pylint errors are found
+          pr-message: true # Send a PR message if pylint errors are found

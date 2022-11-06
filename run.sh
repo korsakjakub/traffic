@@ -1,1 +1,1 @@
-docker run --rm -v $(pwd):/app -it --name traffic traffic bash
+docker run --rm -v $(pwd):/app -it -p 8080:80 --name traffic traffic

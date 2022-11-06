@@ -41,7 +41,7 @@ def time_space_simulation():
     plotter = Plotter(np.array(positions).T)
     plotter.fix_pbc_artifacts()
     plotter.time_space(plot_data={
-        'filename': 'Traffic jam time-space diagram',
+        'filename': f'{Config.png_dir}time-space.png',
         'time_range': time_range
     })
 
@@ -66,10 +66,10 @@ def fundamental_diagram_simulation():
         plot_data.append([density, flux])
     plotter = Plotter(np.array(plot_data).T)
     plotter.fundamental_diagram(plot_data={
-        'filename': f'{Config.png_dir}Fundamental_diagram_{Config.noise}.png',
+        'filename': f'{Config.png_dir}fundamental-diagram.png',
     })
 
 
 if __name__ == "__main__":
-    # time_space_simulation()
+    time_space_simulation()
     fundamental_diagram_simulation()

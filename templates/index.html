@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic</title>
+</head>
+<body>
+<form method="post" action="/">
+    <label for="road_size">Road size: </label>
+    <input type="number" value="{{ road_size }}" id="road_size" name="road_size"/>
+    <label for="noise">Noise: </label>
+    <input type="text" value="{{ noise }}" id="noise" name="noise"/>
+    <label for="cars_amount">Cars amount: </label>
+    <input type="number" value="{{ cars_amount }}" id="cars_amount" name="cars_amount"/>
+    <label for="time_range">Time range:</label>
+    <input type="number" value="{{ time_range }}" id="time_range" name="time_range"/>
+    <input type="submit" value="time-space" name="time-space"/>
+    <input type="submit" value="fundamental" name="fundamental"/>
+</form>
+<div>
+    <p>Space time</p>
+    <img src="{{url_for('static', filename='fundamental-diagram.png')}}" style="width:80%"/>
+</div>
+<div>
+    <p>Fundamental diagram</p>
+    <img src="{{url_for('static', filename='time-space.png')}}" style="width:80%"/>
+</div>
+</body>
+</html>

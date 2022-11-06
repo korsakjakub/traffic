@@ -7,3 +7,4 @@ class Config:
     cars_amount = 30
     time_range = 40
     png_dir = 'png/'
+    templates = 'templates/'

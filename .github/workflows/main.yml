@@ -1,5 +1,5 @@
 name: 'Test and lint'
-on: [push]
+on: [ push ]
 
 jobs:
   test-lint:
@@ -8,11 +8,6 @@ jobs:
       - name: Prepare repo
         uses: actions/checkout@master
       - name: Test
-        uses: onichandame/python-test-action@master
+        run: python -m unittest discover -s . -p 'test_*'
       - name: Lint
-        uses: gabriel-milan/action-pylint@v1
-        with:
-          GITHUB_TOKEN: ${{secrets.WORKFLOW_TOKEN}} # GitHub token
-          path: "./*.py" # Glob pattern for files to lint
-          fail: false # Fail the action if pylint errors are found
-          pr-message: true # Send a PR message if pylint errors are found
+        run: pylint *.py --ignore-patterns=test

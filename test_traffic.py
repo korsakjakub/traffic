@@ -17,12 +17,12 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(type(car.velocity), int)
 
     def test_evaluate_distances(self):
-        tr = [
+        traffic_instances = [
             Traffic(params={"road_size": 3, "road": Road([Car(position=0), Car(position=2)])}),
             Traffic(params={"road_size": 10, "road": Road([Car(position=i) for i in range(10)])}),
             Traffic(params={"road_size": 10, "road": Road([Car(position=4), Car(position=5)])})
         ]
-        got = [traffic.evaluate_distances() for traffic in tr]
+        got = [traffic.evaluate_distances() for traffic in traffic_instances]
         want = [[1, 0], [0 for _ in range(10)], [0, 8]]
         self.assertEqual(len(got), len(want))
         for i in range(len(want)):

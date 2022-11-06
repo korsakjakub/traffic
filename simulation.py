@@ -1,26 +1,36 @@
+"""
+Jakub Korsak
+"""
+import numpy as np
+
 from plotter import Plotter
 from traffic import Traffic
-import numpy as np
 from config import Config
 
 
-# from plotter import Plotter
-
-
 def calculate_flux(position, cars_positions):
+    """
+    Calculate flux of cars flowing through a point position
+    :param position: the point at which the flux is calculated
+    :param cars_positions: list of cars' lists of positions
+    :return: the amount of cars that passed position divided by the amount of cars overall
+    """
     ticks = 0
     for car in cars_positions:
         smaller_than_pos = car[0] < position
-        for t in range(len(car) - 1):
-            if car[t] >= position and smaller_than_pos:
+        for time in range(len(car) - 1):
+            if car[time] >= position and smaller_than_pos:
                 smaller_than_pos = False
                 ticks += 1
-            if car[t + 1] < car[t]:
+            if car[time + 1] < car[time]:
                 smaller_than_pos = True
     return ticks / len(cars_positions[0])
 
 
 def time_space_simulation():
+    """
+    Simulate the traffic flow in order to construct time-space diagrams
+    """
     traffic = Traffic()
     traffic.get_initial_traffic(Config.cars_amount)
     time_range = Config.time_range
@@ -37,6 +47,9 @@ def time_space_simulation():
 
 
 def fundamental_diagram_simulation():
+    """
+    Simulate the traffic flow in order to construct the fundamental diagrams
+    """
     plot_data = []
     for cars_amount in range(3, Config.road_size):
         traffic = Traffic()
@@ -47,7 +60,8 @@ def fundamental_diagram_simulation():
             traffic.move_cars()
             positions.append(traffic.get_cars_positions())
         flux = np.mean(
-            [calculate_flux(position=x, cars_positions=np.array(positions).T) for x in range(Config.road_size)])
+            [calculate_flux(position=x,
+                            cars_positions=np.array(positions).T) for x in range(Config.road_size)])
         density = cars_amount / Config.road_size
         plot_data.append([density, flux])
     plotter = Plotter(np.array(plot_data).T)

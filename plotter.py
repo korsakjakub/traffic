@@ -63,7 +63,7 @@ class Plotter:
 
         plt.figure()
         plt.xlabel("density [cars/road size]")
-        plt.ylabel("mean flux w.r.p. to position [cars/time]")
+        plt.ylabel("mean flux [cars/time]")
         plt.ylim([0, 1])
         plt.xlim([0, 1])
         plt.scatter(data[0], data[1])

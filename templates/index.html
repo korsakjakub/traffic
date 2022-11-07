@@ -2,7 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traffic</title>
+    <style type="text/css" media="screen">
+        img {
+            width: 80%;
+            height: auto;
+            max-width: 800px;
+        }
+        input {
+            width: 100px;
+        }
+        form {
+            display: grid
+        }
+    </style>
 </head>
 <body>
 <form method="post" action="/">
@@ -18,11 +32,9 @@
     <input type="submit" value="fundamental" name="fundamental"/>
 </form>
 <div>
-    <p>Space time</p>
-    <img src="{{url_for('static', filename='fundamental-diagram.png')}}" style="width:80%"/>
-</div>
-<div>
     <p>Fundamental diagram</p>
+    <img src="{{url_for('static', filename='fundamental-diagram.png')}}" style="width:80%"/>
+    <p>Time-space diagram</p>
     <img src="{{url_for('static', filename='time-space.png')}}" style="width:80%"/>
 </div>
 </body>
